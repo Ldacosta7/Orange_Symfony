@@ -8,7 +8,16 @@ use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
-#[ORM\UniqueConstraint(name: 'UNIQ_IDENTIFIER_EMAIL', fields: ['email'])]
+
+#[ORM\InheritanceType("JOINED")] // Stratégie d'héritage
+#[ORM\DiscriminatorColumn(name: "type", type: "string")]
+#[ORM\DiscriminatorMap([
+    "user" => User::class,
+    "technicien" => Technicien::class,
+    "client" => Client::class
+])]#[ORM\Table(name: "user")] // Nom de la table
+#[ORM\UniqueConstraint(name: 'UNIQ_IDENTIFIER_EMAIL', fields: ['email'])] // Contrainte unique
+
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
@@ -37,9 +46,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 255)]
     private ?string $prenom = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $telephone = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $adresse = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $tel = null;
+
+      
     public function getId(): ?int
     {
         return $this->id;
@@ -139,14 +153,28 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getTelephone(): ?string
+
+    public function getAdresse(): ?string
     {
-        return $this->telephone;
+        return $this->adresse;
     }
 
-    public function setTelephone(?string $telephone): static
+    public function setAdresse(string $adresse): static
     {
-        $this->telephone = $telephone;
+        $this->adresse = $adresse;
+
+        return $this;
+    }
+
+    public function getTel(): ?string
+    {
+        return $this->tel;
+    }
+
+    public function setTel(string $tel): static
+    {
+        $this->tel = $tel;
+
 
         return $this;
     }
