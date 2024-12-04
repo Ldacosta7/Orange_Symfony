@@ -32,59 +32,10 @@ class Intervention
     #[ORM\Column]
     private ?float $prix = null;
 
-// Ajoutez la relation ManyToMany avec Materiel
-    #[ORM\ManyToMany(targetEntity: Materiel::class, inversedBy: "interventions")]
-    #[ORM\JoinTable(name: "intervention_materiel")]
-    private Collection $materiels;
-
-    // Ajoutez la relation ManyToOne avec Technicien
-    #[ORM\ManyToOne(targetEntity: Technicien::class, inversedBy: "interventions")]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?Technicien $technicien = null;
-
-// Getter et Setter
-    public function getTechnicien(): ?Technicien
+    public function getId(): ?int
     {
-        return $this->technicien;
+        return $this->id;
     }
-
-    public function setTechnicien(Technicien $technicien): self
-    {
-        $this->technicien = $technicien;
-        return $this;
-    }
-
-
-// Constructeur
-    public function __construct()
-    {
-        $this->materiels = new ArrayCollection();
-    }
-
-// Getter
-    public function getMateriels(): Collection
-    {
-        return $this->materiels;
-    }
-
-// Ajouter un matériel
-    public function addMateriel(Materiel $materiel): self
-    {
-        if (!$this->materiels->contains($materiel)) {
-            $this->materiels->add($materiel);
-        }
-
-        return $this;
-    }
-
-    public function removeMateriel(Materiel $materiel): self
-    {
-        $this->materiels->removeElement($materiel);
-        return $this;
-    }
-
-
-
 
     public function getIdIntervention(): ?int
     {

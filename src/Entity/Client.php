@@ -11,60 +11,20 @@ class Client extends User
 
 
     #[ORM\Column(length: 255)]
-    private ?string $type = null;
+    private ?string $grade = null;
 
     #[ORM\Column(length: 255)]
     private ?string $fidelite = null;
 
-// Ajoutez la propriété pour la relation OneToMany avec Materiel
-    #[ORM\OneToMany(mappedBy: "client", targetEntity: Materiel::class)]
-    private Collection $materiels;
 
-// Constructeur
-    public function __construct()
+    public function getGrade(): ?string
     {
-        $this->materiels = new ArrayCollection();
+        return $this->grade;
     }
 
-// Getter
-    public function getMateriels(): Collection
+    public function setType(string $grade): static
     {
-        return $this->materiels;
-    }
-
-// Ajoutez un getter pour un matériel spécifique (optionnel)
-    public function addMateriel(Materiel $materiel): self
-    {
-        if (!$this->materiels->contains($materiel)) {
-            $this->materiels->add($materiel);
-            $materiel->setClient($this);
-        }
-
-        return $this;
-    }
-
-    public function removeMateriel(Materiel $materiel): self
-    {
-        if ($this->materiels->removeElement($materiel)) {
-            if ($materiel->getClient() === $this) {
-                $materiel->setClient(null);
-            }
-        }
-
-        return $this;
-    }
-
-
-
-
-    public function getType(): ?string
-    {
-        return $this->type;
-    }
-
-    public function setType(string $type): static
-    {
-        $this->type = $type;
+        $this->grade = $grade;
 
         return $this;
     }

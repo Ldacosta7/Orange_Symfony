@@ -19,45 +19,6 @@ class Categorie
     #[ORM\Column(length: 255)]
     private ?string $libelle = null;
 
-    // Ajoutez la propriété pour la relation OneToMany avec Materiel
-    #[ORM\OneToMany(mappedBy: "categorie", targetEntity: Materiel::class)]
-    private Collection $materiels;
-
-// Constructeur
-    public function __construct()
-    {
-        $this->materiels = new ArrayCollection();
-    }
-
-// Getter
-    public function getMateriels(): Collection
-    {
-        return $this->materiels;
-    }
-
-// Ajoutez un getter pour un matériel spécifique (optionnel)
-    public function addMateriel(Materiel $materiel): self
-    {
-        if (!$this->materiels->contains($materiel)) {
-            $this->materiels->add($materiel);
-            $materiel->setCategorie($this);
-        }
-
-        return $this;
-    }
-
-    public function removeMateriel(Materiel $materiel): self
-    {
-        if ($this->materiels->removeElement($materiel)) {
-            if ($materiel->getCategorie() === $this) {
-                $materiel->setCategorie(null);
-            }
-        }
-
-        return $this;
-    }
-
-
     public function getId(): ?int
     {
         return $this->id;
