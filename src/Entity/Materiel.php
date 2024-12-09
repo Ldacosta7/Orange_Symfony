@@ -14,8 +14,6 @@ class Materiel
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column]
-    private ?int $idMateriel = null;
 
     #[ORM\Column(length: 255)]
     private ?string $designation = null;
@@ -37,17 +35,6 @@ class Materiel
         return $this->id;
     }
 
-    public function getIdMateriel(): ?int
-    {
-        return $this->idMateriel;
-    }
-
-    public function setIdMateriel(int $idMateriel): static
-    {
-        $this->idMateriel = $idMateriel;
-
-        return $this;
-    }
 
     public function getDesignation(): ?string
     {

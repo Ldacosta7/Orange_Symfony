@@ -13,8 +13,7 @@ class Categorie
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column]
-    private ?int $idCategorie = null;
+
 
     #[ORM\Column(length: 255)]
     private ?string $libelle = null;
@@ -24,17 +23,6 @@ class Categorie
         return $this->id;
     }
 
-    public function getIdCategorie(): ?int
-    {
-        return $this->idCategorie;
-    }
-
-    public function setIdCategorie(int $idCategorie): static
-    {
-        $this->idCategorie = $idCategorie;
-
-        return $this;
-    }
 
     public function getLibelle(): ?string
     {

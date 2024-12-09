@@ -14,8 +14,6 @@ class Intervention
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column]
-    private ?int $idIntervention = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $dateInter = null;
@@ -37,17 +35,6 @@ class Intervention
         return $this->id;
     }
 
-    public function getIdIntervention(): ?int
-    {
-        return $this->idIntervention;
-    }
-
-    public function setIdIntervention(int $idIntervention): static
-    {
-        $this->idIntervention = $idIntervention;
-
-        return $this;
-    }
 
     public function getDateInter(): ?\DateTimeInterface
     {
