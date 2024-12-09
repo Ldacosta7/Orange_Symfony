@@ -14,35 +14,27 @@
 
 
 
-<div class="row col">
+<div class="row col" style="padding-bottom: 200px">
     <table class="table">
       <thead class="table-dark">
         <tr>
           <th scope="col">#</th>
-          <th scope="col">First</th>
-          <th scope="col">Last</th>
-          <th scope="col">Handle</th>
+          <th scope="col">Désignation</th>
+          <th scope="col">Modele</th>
+          <th scope="col">Marque</th>
+          <th scope="col">Prix</th>
         </tr>
       </thead>
       <tbody>
+{% for matos in listMatos %}
         <tr>
-          <th scope="row">1</th>
-          <td>Mark</td>
-          <td>Otto</td>
-          <td>@mdo</td>
+            <td>{{ matos.id }}</td>
+            <td>{{ matos.designation }}</td>
+            <td>{{ matos.modele }}</td>
+            <td>{{ matos.marque }}</td>
+            <td>{{ matos.prix }}</td>
         </tr>
-        <tr>
-          <th scope="row">2</th>
-          <td>Jacob</td>
-          <td>Thornton</td>
-          <td>@fat</td>
-        </tr>
-        <tr>
-          <th scope="row">3</th>
-          <td>Larry</td>
-          <td>the Bird</td>
-          <td>@twitter</td>
-        </tr>
+{% endfor %}
       </tbody>
     </table>
 </div>

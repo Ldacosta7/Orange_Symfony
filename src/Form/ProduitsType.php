@@ -16,6 +16,7 @@ class ProduitsType extends AbstractType
             ->add('designation')
             ->add('modele')
             ->add('marque')
+            ->add('prix')
             ->add('Valider', SubmitType::class);
         ;
     }
