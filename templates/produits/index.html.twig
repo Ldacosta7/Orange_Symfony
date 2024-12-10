@@ -8,10 +8,13 @@
     <h1>Produits</h1>
 </div>
   
-<div class="row col-lg-4 mx-auto">
-  {{ form(formProduits)}}
-</div>
+{% if role == "client" %}
 
+  <div class="row col-lg-4 mx-auto">
+    {{ form(formProduits)}}
+  </div>
+
+{% endif %}
 
 
 <div class="row col" style="padding-bottom: 200px">

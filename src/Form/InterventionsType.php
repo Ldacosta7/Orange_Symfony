@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Intervention;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -20,7 +21,14 @@ class InterventionsType extends AbstractType
             ->add('duree', null, [
                 'widget' => 'single_text',
             ])
-            ->add('statut')
+            ->add('statut', ChoiceType::class,
+            [ 'choices' =>[
+                            'Demande reçu' => "Demande reçu",
+                            'Traitement en cours' => "Traitement en cours",
+                            'Demande finalisé' => "Demande finalisé"
+                        ]
+
+            ])
             ->add('prix')
             ->add('Valider', SubmitType::class)
         ;
