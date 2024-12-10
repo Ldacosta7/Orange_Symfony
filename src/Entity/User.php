@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
@@ -16,7 +17,8 @@ use Symfony\Component\Security\Core\User\UserInterface;
     "technicien" => Technicien::class,
     "client" => Client::class
 ])]#[ORM\Table(name: "user")] // Nom de la table
-#[ORM\UniqueConstraint(name: 'UNIQ_IDENTIFIER_EMAIL', fields: ['email'])] // Contrainte unique
+#[ORM\UniqueConstraint(name: 'UNIQ_IDENTIFIER_EMAIL', fields: ['email'])]
+#[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')] // Contrainte unique
 
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
@@ -100,7 +102,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     public function setRoles(array $roles): static
     {
-        $this->roles = '[client]';
+        $this->roles = array('client');
 
         return $this;
     }
