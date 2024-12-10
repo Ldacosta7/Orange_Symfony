@@ -17,8 +17,12 @@ class ProduitsController extends AbstractController
 
     public function new(Request $request, EntityManagerInterface $entityManager, MaterielRepository $materielRepository ): Response
     {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED');
+
+        
         $materiel = new Materiel();
         $materiel->setDateAchat(new \DateTime('now'));
+
         $form = $this->createForm(ProduitsType::class, $materiel);
 
 
@@ -34,7 +38,8 @@ class ProduitsController extends AbstractController
 
         $listMatos = $materielRepository->findAll();
         
-        return $this->render('produits/index.html.twig', [
+        return $this->render('produits/index.html.twig', 
+        [
             'controller_name' => 'ProduitsController',
             'listMatos' => $listMatos,
             'formProduits' => $form

@@ -3,55 +3,44 @@
 {% block title %}Interventions{% endblock %}
 
 {% block body %}
-    <h1>Interventions</h1>
-
 
 <div class="row col">
-    <form>
-        <div class="mb-3 col-lg-4 mx-auto">
-            <label for="exampleInputEmail1" class="form-label">Produit</label>
-            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-        </div>
-        <div class="mb-3 col-lg-4 mx-auto">
-            <label for="exampleInputEmail1" class="form-label">Date Intervention</label>
-            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-        </div>
-
-        <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
+    <h1>Interventions</h1>
 </div>
 
 
-<div class="row col">
-    <table class="table">
-      <thead class="table-dark">
+<div class="row col-lg-4 mx-auto">
+    {{ form(formIntervention)}}
+</div>
+
+
+<div class="row col" style="padding-bottom: 200px">
+  <table class="table">
+
+    <thead class="table-dark">
+      <tr>
+        <th scope="col">Identifiant</th>
+        <th scope="col">Date Intervention</th>
+        <th scope="col">Description</th>
+        <th scope="col">Durée</th>
+        <th scope="col">Statut</th>
+        <th scope="col">Prix</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      {% for intervention in listeInterventions %}
         <tr>
-          <th scope="col">#</th>
-          <th scope="col">First</th>
-          <th scope="col">Last</th>
-          <th scope="col">Handle</th>
+          <td>{{intervention.id}}</td>
+          <td>{{intervention.dateInter| date('d-m-y')}}</td>
+          <td>{{intervention.description}}</td>
+          <td>{{intervention.duree| date('h:i')}}</td>
+          <td>{{intervention.statut}}</td>
+          <td>{{intervention.prix}}</td>
         </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <th scope="row">1</th>
-          <td>Mark</td>
-          <td>Otto</td>
-          <td>@mdo</td>
-        </tr>
-        <tr>
-          <th scope="row">2</th>
-          <td>Jacob</td>
-          <td>Thornton</td>
-          <td>@fat</td>
-        </tr>
-        <tr>
-          <th scope="row">3</th>
-          <td>Larry</td>
-          <td>the Bird</td>
-          <td>@twitter</td>
-        </tr>
-      </tbody>
-    </table>
+      {% endfor %}
+    </tbody>
+
+  </table>
 </div>
 {% endblock %}

@@ -18,7 +18,7 @@
     <table class="table">
       <thead class="table-dark">
         <tr>
-          <th scope="col">#</th>
+          <th scope="col">Identifiant</th>
           <th scope="col">Désignation</th>
           <th scope="col">Modele</th>
           <th scope="col">Marque</th>
@@ -26,15 +26,15 @@
         </tr>
       </thead>
       <tbody>
-{% for matos in listMatos %}
-        <tr>
-            <td>{{ matos.id }}</td>
-            <td>{{ matos.designation }}</td>
-            <td>{{ matos.modele }}</td>
-            <td>{{ matos.marque }}</td>
-            <td>{{ matos.prix }}</td>
-        </tr>
-{% endfor %}
+        {% for matos in listMatos %}
+          <tr>
+              <td>{{ matos.id }}</td>
+              <td>{{ matos.designation }}</td>
+              <td>{{ matos.modele }}</td>
+              <td>{{ matos.marque }}</td>
+              <td>{{ matos.prix }}</td>
+          </tr>
+        {% endfor %}
       </tbody>
     </table>
 </div>
