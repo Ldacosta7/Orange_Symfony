@@ -5,15 +5,14 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
-use Symfony\Component\Security\Core\User\UserInterface;
 
-class AccueilController extends AbstractController
+class InscriptionController extends AbstractController
 {
-    #[Route('/', name: 'app_accueil')]
+    #[Route('/inscription', name: 'app_inscription')]
     public function index(): Response
     {
-        return $this->render('accueil/index.html.twig', [
-            'controller_name' => 'AccueilController',
+        return $this->render('inscription/index.html.twig', [
+            'controller_name' => 'InscriptionController',
         ]);
     }
 }

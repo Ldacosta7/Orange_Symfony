@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Materiel;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -13,11 +14,33 @@ class ProduitsType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('designation')
-            ->add('modele')
-            ->add('marque')
+            ->add('designation', ChoiceType::class,
+            [
+                'choices' => [
+                    'Téléphone' => "Téléphone",
+                    'Ordinateur' => "Ordinateur",
+                    'Routeur' => "Routeur",
+                    'Télévision' => "Télévision"
+                ]
+            ])
+            ->add('modele', ChoiceType::class,
+            [ 'choices' =>[
+                            'Neuf' => "Neuf",
+                            'Reconditionné' => "Reconditionné",
+                            'Occasion' => "Occasion"
+                        ]
+            ])
+            ->add('marque', ChoiceType::class,
+            [
+                'choices' => [
+                    'Asus' => "Asus",
+                    'Samsung' => "Samsung",
+                    'Lenovo' => "Lenovo",
+                    'Apple' => "Apple"
+                ]
+            ])
             ->add('prix')
-            ->add('Valider', SubmitType::class);
+            ->add('Valider', SubmitType::class)
         ;
     }
 
