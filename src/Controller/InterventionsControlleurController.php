@@ -19,10 +19,13 @@ class InterventionsControlleurController extends AbstractController
 
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED');
 
-        
+
         $intervention = new Intervention();
+        $intervention->setIdClient($this->getUser()->getId());
         
         $form = $this->createForm(InterventionsType::class, $intervention);
+
+
 
 
         $form->handleRequest($request);
@@ -35,7 +38,14 @@ class InterventionsControlleurController extends AbstractController
             return $this->redirectToRoute(('app_interventions_controlleur'));
         }
 
-        $listeInterventions = $interventionRepository->findAll();
+
+        if($this->getUser()->getRoles()[0] == "technicien")
+        {
+            $listeInterventions = $interventionRepository->findAll();
+        }else
+        {
+            $listeInterventions = $interventionRepository->findBy(array('idClient' => $this->getUser()->getId())) ;
+        }
 
         return $this->render( 'interventions_controlleur/index.html.twig',
         [

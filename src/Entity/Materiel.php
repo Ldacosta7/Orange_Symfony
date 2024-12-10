@@ -30,6 +30,9 @@ class Materiel
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $dateAchat = null;
 
+    #[ORM\Column]
+    private ?int $idClient = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -92,6 +95,18 @@ class Materiel
     public function setDateAchat(\DateTimeInterface $dateAchat): static
     {
         $this->dateAchat = $dateAchat;
+
+        return $this;
+    }
+
+    public function getIdClient(): ?int
+    {
+        return $this->idClient;
+    }
+
+    public function setIdClient(int $idClient): static
+    {
+        $this->idClient = $idClient;
 
         return $this;
     }

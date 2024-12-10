@@ -30,6 +30,9 @@ class Intervention
     #[ORM\Column]
     private ?float $prix = null;
 
+    #[ORM\Column]
+    private ?int $idClient = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -92,6 +95,18 @@ class Intervention
     public function setPrix(float $prix): static
     {
         $this->prix = $prix;
+
+        return $this;
+    }
+
+    public function getIdClient(): ?int
+    {
+        return $this->idClient;
+    }
+
+    public function setIdClient(int $idClient): static
+    {
+        $this->idClient = $idClient;
 
         return $this;
     }
